@@ -1,29 +1,8 @@
-# vue-learn
+# Vue-cli3 + Koa2 + Mongoose搭建微博
 
-## Project setup
-```
-npm install
-```
+这是我读大三的时候搭建的一个微博，用到了刚学的一些知识。后台搭建方面只看了一点文档写的，主要是练习Vue这块
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 后台源码：
 
-### Compiles and minifies for production
-```
-npm run build
-```
+    https://github.com/Morpwin/koa2_weibo
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
