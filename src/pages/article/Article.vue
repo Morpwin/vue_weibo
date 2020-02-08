@@ -61,7 +61,7 @@ export default{
 				alert("这已经是最后一页了")
 				return
 			}
-			this.dataShow = this.totalPage[++this.currentPage];
+			this.dataShow = this.totalPage[++this.currentPage].reverse()
 		},
 		// 上一页
 		listenPrev() {
@@ -69,7 +69,7 @@ export default{
 				alert("这已经是第一页了")
 				return
 			}
-			this.dataShow = this.totalPage[--this.currentPage];
+			this.dataShow = this.totalPage[--this.currentPage].reverse()
 		},
 		init() {
 			let that = this
@@ -103,11 +103,13 @@ export default{
 
 <style scoped="scoped">
 	.article{
-		width: 120rem;
+		width: 100%;
+		max-width: 1200px;
+		min-width: 320px;
 		margin: 0 auto;
 	}
 	.content{
-		margin-top: 1rem;
+		margin-top: 10px;
 		display: flex;
 	}
 </style>

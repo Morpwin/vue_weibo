@@ -1,6 +1,6 @@
 <template>
 	<div class="zan">
-		<div class="icon" @click="clickZan"><img :src="zanImg" alt=""></div>
+		<div class="icon" @click="clickZan"><img :src="zanImg" alt="" class="img-fluid"></div>
 		<div class="num" @click="clickZan" ref="num">{{this.zan}}</div>
 		<transition name="fade" @after-leave="afterLeave"><div class="text" v-show="flag">您已经点过赞了~</div></transition>
 		<transition name="num"><div class="add" v-show="add_num">+1</div></transition>
@@ -39,7 +39,7 @@ export default {
 	mounted() {
 		let num = this.$refs.num
 		let ip = sessionStorage.getItem('ip')
-		axios.get('http://localhost:3000/people/getPeople',{params: {ip: ip}}).then((res) => {
+		axios.get('http://121.40.244.57:3000/people/getPeople',{params: {ip: ip}}).then((res) => {
 			if(res.data.code == 1) {
 				window.console.log(res.data.data)
 				this.zanFlag = res.data.data.zanFlag
@@ -84,32 +84,33 @@ export default {
 <style>
 	.zan{
 		position: fixed;
-		bottom: 10rem;
-		right: 4.8rem;
+		bottom: 100px;
+		right: 48px;
 		z-index: 9999;
 	}
 	.zan .icon{
-		width: 6.4rem;
-		height: 6.4rem;
+		width: 64px;
+		height: 64px;
 		cursor: pointer;
 	}
 	.zan .num{
-		width: 5.8rem;
-		height: 2rem;
+		width: 58px;
+		height: 20px;
 		text-align: center;
-		line-height: 2rem;
+		line-height: 20px;
 		background-color: #EAEAEA;
-		border-radius: .6rem;
+		border-radius: 6px;
 		color: #fff;
-		margin-top: 1rem;
+		margin-top: 10px;
 		cursor: pointer;
+		font-size: 12px;
 	}
 	.zan .text{
 		position: absolute;
-		bottom: -3rem;
-		margin-left: -5.5rem;
+		bottom: -30px;
+		margin-left: -55px;
 		left: 50%;
-		width: 11rem;
+		width: 110px;
 	}
 	.fade-enter, .fade-leave-to {
 		opacity: 0
@@ -139,10 +140,10 @@ export default {
 	}
 	.add {
 		color: #10D07A;
-		font-size: 1.6rem;
+		font-size: 16px;
 		position: absolute;
-		top: -5rem;
+		top: -50px;
 		left: 50%;
-		margin-left: -.9rem;
+		margin-left: -9px;
 	}
 </style>

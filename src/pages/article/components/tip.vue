@@ -13,10 +13,10 @@ export default {
 <style scoped="scoped">
 	.tip{
 		flex: 1;
-		margin-top: 2rem;
+		margin-top: 20px;
 	}
 	h3{
-		font-size: 3rem;
+		font-size: 30px;
 		text-align: center;
 	}
 </style>

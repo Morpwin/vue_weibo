@@ -39,11 +39,13 @@ export default{
 
 <style scoped="scoped">
 	.content{
-		width: 120rem;
+		width: 100%;
+		max-width: 1200px;
+		min-width: 320px;
 		margin: 0 auto;
 	}
 	.box{
-		margin-top: 1rem;
+		margin-top: 10px;
 		display: flex;
 	}
 </style>

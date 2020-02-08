@@ -5,7 +5,7 @@
 			<li><router-link tag="a" :to="{path:'/article',query:{type:'all'}}">文章</router-link></li>
 		</ul>
 		<div class="search">
-			<span></span>
+			<span class="img-fluid"></span>
 			<input type="text" v-model="keyword">
 			<ul v-if="showList">
 				<router-link tag="li" v-for="(item, index) in newlist" :key="index" :to="'/content/' + item._id">{{item.title}}</router-link>
@@ -69,22 +69,22 @@ export default{
 <style scoped>
 	.header{
 		width: 100%;
-		height: 6rem;
+		height: 60px;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 	}
 	.header .ul{
 		display: flex;
-		height: 6rem;
+		height: 60px;
 		justify-content: flex-end;
 		align-items: center;
-		margin-right: 10rem;
+		margin-right: 100px;
 	}
 	.header .ul li{
-		width: 10rem;
-		height: 5.5rem;
-		line-height: 5.5rem;
+		width: 100px;
+		height: 55px;
+		line-height: 55px;
 		text-align: center;
 		border-bottom: 5px solid #fff;
 	}
@@ -93,44 +93,48 @@ export default{
 	}
 	.header .ul li a{
 		color: #000;
+		text-decoration: none;
+		font-size: 14px;
 	}
 	.header input{
-		width: 20rem;
-		height: 2.6rem;
+		width: 200px;
+		height: 26px;
 		border: 1px solid #ccc;
-		margin-right: 1rem;
-		padding: 0 1rem 0 2.2rem;
+		margin-right: 10px;
+		padding: 0 10px 0 22px;
 		color: #666;
 	}
 	.search{
 		position: relative;
 	}
 	.search span{
-		width: 2rem;
-		height: 2rem;
+		width: 20px;
+		height: 20px;
 		background: url(../../../assets/images/search.png) no-repeat;
+		background-size: cover;
 		position: absolute;
-		top: 0.3rem;
+		top: 3px;
 		left: 0;
 	}
 	.search ul{
-		width: 24.4rem;
+		width: 244px;
 		position: absolute;
-		top: 3rem;
+		top: 30px;
 		left: 0;
-		z-index: 99;
+		z-index: 9999;
 	}
 	.search ul li{
-		width: 24rem;
-		height: 2.8rem;
-		line-height: 2.8rem;
+		width: 240px;
+		height: 28px;
+		line-height: 28px;
 		color: #666666;
 		background-color: #fff;
-		padding: 0 0.6rem;
+		padding: 0 6px;
 		border-top: 1px solid #EAEAEA;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		cursor: pointer;
+		font-size: 14px;
 	}
 	.search ul li:hover{
 		color: #10D07A;

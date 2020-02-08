@@ -24,14 +24,14 @@ export default{
 		width: 65%;
 		display: flex;
 		justify-content: space-between;
-		padding: 2rem 0 2rem 2rem;
+		padding: 20px 0 20px 20px;
 	}
 	.prev,.next{
-		width: 8rem;
-		height: 3rem;
+		width: 80px;
+		height: 30px;
 		border: 1px solid #10D07A;
-		font-size: 1.6rem;
-		line-height: 3rem;
+		font-size: 16px;
+		line-height: 30px;
 		text-align: center;
 	}
 	.prev:hover,.next:hover{

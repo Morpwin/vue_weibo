@@ -15,7 +15,7 @@
 				<li @click="git"></li>
 			</ul>
 			<div class="big-img" v-show="imgFlag"  @click="hide">
-				<img :src=img alt="">
+				<img :src=img alt="" class="img-fluid">
 				<span>X</span>
 			</div>
 		</div>
@@ -76,32 +76,37 @@ export default{
 <style scoped="scoped">
 	.me{
 		width: 30%;
-		margin-left: 4rem;
+		margin-left: 20px;
+		margin-right: 20px;
 	}
 	.about_me,.type,.contact{
 		border: 1px solid #eaeaea;
 		position: relative;
-		padding: 4rem 2rem 4rem 2rem;
+		padding: 40px 20px 40px 20px;
 		text-align: center;
-		font-size: 1.4rem;
-		line-height: 3rem;
-		margin-top: 4rem;
+		font-size: 14px;
+		line-height: 30px;
+		margin-top: 40px;
 	}
 	.title_me,.title_type,.title_contact{
 		position: absolute;
-		width: 18rem;
-		height: 4rem;
+		width: 180px;
+		height: 40px;
 		background-color: #fff;
 		text-align: center;
-		line-height: 4rem;
+		line-height: 40px;
 		left: 50%;
-		margin-left: -9rem;
-		top: -2rem;
-		font-size: 2rem;
+		margin-left: -90px;
+		top: -20px;
+		font-size: 20px;
 		font-weight: 400;
 	}
 	.about_me h1{
 		color: #10D07A;
+	}
+	.about_me h1,h2,h3,h4{
+		line-height: 30px;
+		font-size: 14px;
 	}
 	.type ul{
 		display: flex;
@@ -113,19 +118,22 @@ export default{
 		
 		background-color: #f3f3f3;	
 		text-align: center;
-		margin: .5rem;
+		margin: 5px;
 		cursor: pointer;
+		font-size: 12px;
 	}
 	/* a的样式 */
 	.type ul li a{
 		display: block;
-		height: 1rem;
-		padding: 1rem;
-		line-height: 1rem;
+		height: 10px;
+		padding: 10px;
+		line-height: 10px;
 		color: #666;
+		font-size: 12px;
 	}
 	.type ul li a:hover{
 		color: #fff;
+		text-decoration: none;
 	}
 	.type ul li:hover{
 		color: #fff;
@@ -138,10 +146,10 @@ export default{
 		align-items: center;
 	}
 	.contact ul li{
-		width: 4rem;
-		height: 4rem;
-		margin: .5rem;
-		border: .1rem solid #EAEAEA;
+		width: 40px;
+		height: 40px;
+		margin: 5px;
+		border: 1px solid #EAEAEA;
 		cursor: pointer;
 	}
 	.contact ul li:first-child{
@@ -165,31 +173,61 @@ export default{
 		background: url(../../../assets/images/github-hover.png) no-repeat center;
 		background-color: #10D07A;
 	}
+	/* 适配手机端,避免图片失真 */
+	@media only screen and (max-width: 640px) {
+    .contact ul li:first-child{
+			background: url(../../../assets/images/aui-icon-qq-2x.png) no-repeat center;
+			background-size: 50% 50%;
+    }
+    .contact ul li:first-child:hover{
+			background: url(../../../assets/images/aui-icon-qq-hover-2x.png) no-repeat center;
+			background-color: #10D07A;
+			background-size: 50% 50%;
+    }
+    .contact ul li:nth-child(2){
+			background: url(../../../assets/images/weixin-2x.png) no-repeat center;
+			background-size: 50% 50%;
+    }
+    .contact ul li:nth-child(2):hover{
+			background: url(../../../assets/images/weixin-hover-2x.png) no-repeat center;
+			background-color: #10D07A;
+			background-size: 50% 50%;
+    }
+    .contact ul li:nth-child(3){
+			background: url(../../../assets/images/github-2x.png) no-repeat center;
+			background-size: 50% 50%;
+    }
+    .contact ul li:nth-child(3):hover{
+			background: url(../../../assets/images/github-hover-2x.png) no-repeat center;
+			background-color: #10D07A;
+			background-size: 50% 50%;
+    }
+}
 	.contact .big-img{
-		width: 16rem;
-		height: 16rem;
+		width: 100%;
+		height: 160px;
 		text-align: center;
-		line-height: 16rem;
+		line-height: 160px;
 		position: absolute;
-		top: -1.6rem;
-		left: 10rem;
+		top: 0;
+		left: 0;
 		border: 1px solid #EAEAEA;
 		z-index: 99;
 		background-color: #fff;
 	}
 	.contact .big-img img{
-		width: 10rem;
-		height: 10rem;
+		width: 100px;
+		height: 100px;
 	}
 	.contact .big-img span{
 		position: absolute;
 		top: 0;
 		right: 0;
 		display: block;
-		width: 1rem;
-		height: 1rem;
-		line-height: 1rem;
-		padding: .5rem;
+		width: 10px;
+		height: 10px;
+		line-height: 10px;
+		padding: 5px;
 		color: #EAEAEA;
 	}
 	.contact .big-img span:hover{

@@ -3,16 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import VueJsonp from 'vue-jsonp'
-// import "@/assets/amaze/css/amazeui.css"
+import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/js/bootstrap.min.js"
+import 'jquery'
 import "@/assets/styles/border.css"
 import "@/assets/styles/base.css"
 import 'swiper/dist/css/swiper.css'
+import 'lib-flexible'
+
 
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
-Vue.use(VueJsonp)
-
 new Vue({
   router,
   store,

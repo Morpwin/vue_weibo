@@ -4,15 +4,15 @@
 			<swiper :options="swiperOption" ref="mySwiper">
 					<swiper-slide>
 
-						<img src="../../../assets/images/b1.jpg" alt="">
+						<img src="../../../assets/images/b1.jpg" alt="" class="img-fluid">
 					</swiper-slide>
 					<swiper-slide>
 
-						<img src="../../../assets/images/b2.jpg" alt="">
+						<img src="../../../assets/images/b2.jpg" alt="" class="img-fluid">
 					</swiper-slide>
 					<swiper-slide>
 
-						<img src="../../../assets/images/b3.jpg" alt="">
+						<img src="../../../assets/images/b3.jpg" alt="" class="img-fluid">
 					</swiper-slide>
 			</swiper>
 <!-- 			<div class="swiper-button-prev"></div>
@@ -68,46 +68,47 @@ export default{
 	}
 	.wrapper{
 		width: 100%;
-		margin: 2rem auto 0 auto;
+		margin: 20px auto 0 auto;
 		background-color: #eee;
 		box-shadow: 0 0 8px #ccc;
 	}
 	.wrapper img{
-		width: 100%;
+		
 	}
 	.mask{
-		width: 36rem;
-		height: 24rem;
+		width: 360px;
+		height: 240px;
 		background-color: #fff;
 		display: flex;
 		justify-content: center;
 		align-content: center;
 		flex-wrap: wrap;
 		text-align: center;
-		padding: 0 10rem 0 10rem;
+		padding: 0 100px 0 100px;
 	}
 	.mask_bd{
 		border: 3px solid #fff;
-		padding: .5rem;
+		padding: 5px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		margin: -12.8rem 0 0 -28.8rem;
-		z-index: 9999;
+		margin: -128px 0 0 -288px;
+		z-index: 9998;
 	}
 	.mask h1{
 		width: 100%;
-		font-size: 2.6rem;
-		line-height: 6rem;
+		font-size: 26px;
+		line-height: 60px;
 	}
 	.mask p{
 		width: 100%;
-		font-size: 1.6rem;
-		line-height: 2rem;
+		font-size: 16px;
+		line-height: 20px;
 	}
 	.mask time{
 		width: 100%;
-		line-height: 4rem;
+		line-height: 40px;
+		font-size: 12px;
 	}
 	.swiper-slide{
 		display: flex;

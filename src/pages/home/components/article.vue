@@ -12,26 +12,24 @@
 <script>
 export default{
 	name: "HomeArticle",
-	props:{
-		dataShow: Array
-	}
+	props:['dataShow']
 }
 </script>
 
 <style scoped="scoped">
 	.article{
 		flex: 1;
-		width: 60rem;
+		width: 70%;
 	}
 	.article_box{
-		padding: 2rem 4rem 2rem 4rem;
+		padding: 20px 20px 20px 20px;
 		display: flex;
 		flex-wrap: wrap;
 	}
 	.h1{
-		font-size: 2.6rem;
+		font-size: 26px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 	}
 	.type:hover,.h1:hover,.p:hover{
 		color: #10D07A;
@@ -40,8 +38,8 @@ export default{
 	.type,time{
 		width: 50%;
 		color: #25a4bb;
-		font-size: 1.4rem;
-		line-height: 3rem;
+		font-size: 14px;
+		line-height: 30px;
 		
 	}
 	time{
@@ -52,15 +50,14 @@ export default{
 		width: 100%;
 	}
 	.p{
-		font-size: 1.6rem;
-		line-height: 3rem;
+		font-size: 16px;
+		line-height: 30px;
 		color: #666;
 		overflow: hidden;
 		text-overflow:ellipsis;
 		white-space: nowrap;
-		width: 60rem;
 	}
 	.h1{
-		width: 60rem;
+		
 	}
 </style>

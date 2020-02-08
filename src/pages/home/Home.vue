@@ -8,6 +8,7 @@
 			<home-me></home-me>
 		</div>
 		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext"></home-pagination>
+		<home-footer></home-footer>
 	</div>
 </template>
 	
@@ -18,6 +19,7 @@ import HomeArticle from './components/article'
 import HomeMe from './components/me'
 import HomePagination from './components/pagination'
 import HomeZan from './components/zan'
+import HomeFooter from './components/footer'
 import * as sysTools from '../../assets/js/sysTools.js'
 import timeTool from '../../assets/js/timeTool.js'
 import axios from 'axios'
@@ -30,7 +32,8 @@ export default{
 		HomeArticle,
 		HomeMe,
 		HomePagination,
-		HomeZan
+		HomeZan,
+		HomeFooter
 	},
 	data() {
 		return {
@@ -119,7 +122,7 @@ export default{
 			for (let i = 0; i < that.pageNum; i++) {
 				that.totalPage[i] = that.articleList.slice(that.pageSize * i, that.pageSize * (i + 1))
 			}
-			that.dataShow = that.totalPage[that.currentPage]
+			that.dataShow = that.totalPage[that.currentPage].reverse()
 		})
 	},
 	mounted() {
@@ -141,7 +144,7 @@ export default{
 				alert("这已经是最后一页了")
 				return
 			}
-			this.dataShow = this.totalPage[++this.currentPage];
+			this.dataShow = this.totalPage[++this.currentPage].reverse()
 		},
 		// 上一页
 		listenPrev() {
@@ -149,7 +152,7 @@ export default{
 				alert("这已经是第一页了")
 				return
 			}
-			this.dataShow = this.totalPage[--this.currentPage];
+			this.dataShow = this.totalPage[--this.currentPage].reverse()
 		},
 		//监听点赞
 		listenClickZan() {
@@ -186,11 +189,13 @@ export default{
 
 <style scoped="scoped">
 	.home{
-		width: 120rem;
+		width: 100%;
+		max-width: 1200px;
+		min-width: 320px;
 		margin: 0 auto;
 	}
 	.content{
-		margin-top: 1rem;
+		margin-top: 10px;
 		display: flex;
 	}
 </style>

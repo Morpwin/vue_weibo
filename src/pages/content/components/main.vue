@@ -26,7 +26,9 @@ export default{
 <style>
 	.main {
 		flex: 1;
-		margin-top: 3rem;
+		margin-top: 30px;
+		width: 70%;
+		padding-left: 20px;
 	}
 	/* table 样式 */
 	.main table {
@@ -65,6 +67,7 @@ export default{
 		padding: 3px 5px;
 		margin: 20px 3px;
 		color: #666;
+		font-size: 14px;
 	}
 	.main pre code {
 		display: block;
@@ -75,48 +78,48 @@ export default{
 		margin: 10px 0 10px 20px;
 	}
 	.main h1{
-		font-size: 2.4rem;
+		font-size: 24px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h2{
-		font-size: 2.2rem;
+		font-size: 22px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h3{
-		font-size: 2.0rem;
+		font-size: 20px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h4{
-		font-size: 1.8rem;
+		font-size: 18px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h5{
-		font-size: 1.6rem;
+		font-size: 16px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h6{
-		font-size: 1.4rem;
+		font-size: 14px;
 		font-weight: 800;
-		line-height: 6rem;
+		line-height: 60px;
 		color: #10D07A;
 	}
 	.main p{
-		font-size: 1.4rem;
-		line-height: 3rem;
-		text-indent: 2em;
+		font-size: 14px;
+		line-height: 30px;
+		text-indent: 20px;
 	}
 	.main span{
-		font-size: 1.6rem;
+		font-size: 14px;
 		color: #ccc;
 	}
 	.main img{
