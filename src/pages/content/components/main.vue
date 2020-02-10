@@ -1,15 +1,12 @@
 <template>
-	<div class="main">
-		<div class="title"><h3>{{article.title}}</h3></div>
-		<div class="content" v-html="article.content" id="content">
-		</div>
+	<div class="main fadeInLeft">
+		<div class="title"><h1>{{article.title}}</h1></div>
+		<div class="content" v-html="article.content" id="content"></div>
 	</div>
-	<!-- <div>
-		<p></p><h3 id="静态布局">静态布局</h3><p>最外层容器固定大小，超出部分用滚动条实现，移动端不兼容</p><p>一般PC会设置最小宽度，低于最小宽度出现滚动条，移动端设置最大宽度，超过则居中显示</p><h3 id="流式布局"><a href="#流式布局"></a>流式布局</h3><p>常用模板：</p><p>左侧固定 右侧自适应</p><p>左右固定 中间自适应</p><p>缺点：屏幕尺度跨度过大时，页面不能正常显示</p><h3 id="弹性布局"><a href="#弹性布局"></a>弹性布局</h3><p>CSS3引入的强大布局，但是浏览器兼容不好，移动端浏览器对flex支持也不理想</p><h3 id="响应式布局"><a href="#响应式布局"></a>响应式布局</h3><p>自适应布局和流式布局的综合，利用媒介查询检测屏幕尺寸，设置不同样式</p>
-	</div> -->
 </template>
 
 <script>
+import scrollReveal from 'scrollreveal'
 export default{
 	name: "ContentMain",
 	props:{
@@ -17,8 +14,26 @@ export default{
 	},
 	data() {
 		return {
-			
+			scrollReveal: scrollReveal()
 		}
+	},
+	mounted() {
+		this.scrollReveal.reveal(".fadeInLeft", {
+			// 动画的时长
+			duration: 800,
+			// 延迟时间
+			delay: 0,
+			// 动画开始的位置，'bottom', 'left', 'top', 'right'
+			origin: 'left',
+			// 回滚的时候是否再次触发动画
+			reset: false,
+			// 在移动端是否使用动画
+			mobile: false,
+			// 滚动的距离，单位可以用%，rem等
+			distance: '200px',
+			// 其他可用的动画效果
+			easing: 'linear'
+		})
 	}
 }
 </script>

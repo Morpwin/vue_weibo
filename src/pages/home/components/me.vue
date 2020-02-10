@@ -1,13 +1,13 @@
 <template>
-	<div class="me">
-		<div class="about_me">
+	<div class="me" >
+		<div class="about_me fadeInRight">
 			<div class="title_me">关于作者</div>
-			<h1>Morpwin</h1>
+			<h1>孜然粉</h1>
 			<h2>一个前端小白</h2>
 			<h3>巨蟹座</h3>
 			<h4>初学HTML、CSS、JS，有了解Vue</h4>
 		</div>
-		<div class="contact">
+		<div class="contact fadeInRight">
 			<div class="title_contact">联系我</div>
 			<ul>
 				<li @click="qq"></li>
@@ -19,7 +19,7 @@
 				<span>X</span>
 			</div>
 		</div>
-		<div class="type">
+		<div class="type fadeInRight">
 			<div class="title_type">相关分类</div>
 			<ul>
 				<!-- <li><a href="/article/Html">Html</a></li>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import scrollReveal from 'scrollreveal'
 export default{
 	name: "HomeMe",
 	methods: {
@@ -67,8 +68,27 @@ export default{
 	data() {
 		return {
 			img: "",
-			imgFlag: false
+			imgFlag: false,
+			scrollReveal: scrollReveal()
 		}
+	},
+	mounted() {
+		this.scrollReveal.reveal('.fadeInRight', {
+			// 动画的时长
+			duration: 800,
+			// 延迟时间
+			delay: 0,
+			// 动画开始的位置，'bottom', 'left', 'top', 'right'
+			origin: 'right',
+			// 回滚的时候是否再次触发动画
+			reset: false,
+			// 在移动端是否使用动画
+			mobile: false,
+			// 滚动的距离，单位可以用%，rem等
+			distance: '200px',
+			// 其他可用的动画效果
+			easing: 'linear'
+		})
 	}
 }
 </script>

@@ -1,15 +1,17 @@
 <template>
-	<div class="header border-bottom">
-		<ul ref="ul" class="ul">
-			<li class="now"><router-link tag="a" to="/">首页</router-link></li>
-			<li><router-link tag="a" :to="{path:'/article',query:{type:'all'}}">文章</router-link></li>
-		</ul>
-		<div class="search">
-			<span class="img-fluid"></span>
-			<input type="text" v-model="keyword">
-			<ul v-if="showList">
-				<router-link tag="li" v-for="(item, index) in newlist" :key="index" :to="'/content/' + item._id">{{item.title}}</router-link>
+	<div class="header">
+		<div class="contain">
+			<ul ref="ul" class="ul">
+				<li class="now"><router-link tag="a" to="/">首页</router-link></li>
+				<li><router-link tag="a" :to="{path:'/article',query:{type:'all'}}">文章</router-link></li>
 			</ul>
+			<div class="search">
+				<span class="img-fluid"></span>
+				<input type="text" v-model="keyword">
+				<ul v-if="showList">
+					<router-link tag="li" v-for="(item, index) in newlist" :key="index" :to="'/content/' + item._id">{{item.title}}</router-link>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
@@ -70,6 +72,18 @@ export default{
 	.header{
 		width: 100%;
 		height: 60px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999;
+		background-color: rgba(255,255,255,0.52);
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		box-shadow: 0 0 20px rgba(0, 0, 0, .12);
+	}
+	.contain {
+		width: 1200px;
+		margin: 0 auto;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;

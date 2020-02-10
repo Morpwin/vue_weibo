@@ -10,10 +10,12 @@ import "@/assets/styles/border.css"
 import "@/assets/styles/base.css"
 import 'swiper/dist/css/swiper.css'
 import 'lib-flexible'
+import "@/assets/styles/animate.min.css"
 
 
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
+
 new Vue({
   router,
   store,

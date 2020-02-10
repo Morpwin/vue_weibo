@@ -25,6 +25,8 @@ export default {
 		flex-wrap: wrap;
 		justify-content: center;
 		margin-top: 20px;
+		font-size: 12px;
+		
 	}
 	.qq,.wx{
 		font-size: 12px;

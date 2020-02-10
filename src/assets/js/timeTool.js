@@ -6,6 +6,9 @@ export default function getTime () {
 	let hour = date.getHours();
 	let min = date.getMinutes();
 	let sec = date.getSeconds();
+	if(hour < 10){
+		hour = "0" + hour
+	}
 	if(min < 10){
 		min = "0" + min
 	}

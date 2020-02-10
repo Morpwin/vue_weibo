@@ -65,6 +65,7 @@ export default{
 <style scoped>
 	.box{
 		position: relative;
+		margin-top: 80px;
 	}
 	.wrapper{
 		width: 100%;

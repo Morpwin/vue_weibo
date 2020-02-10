@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<home-zan @listenClickZan="listenClickZan" :zan="zan"></home-zan>
-		<home-header></home-header>
+		<home-header class="fadeInTop"></home-header>
 		<home-swiper :sloganData="sloganData"></home-swiper>
 		<div class="content">
 			<home-article :dataShow="dataShow"></home-article>
@@ -23,6 +23,7 @@ import HomeFooter from './components/footer'
 import * as sysTools from '../../assets/js/sysTools.js'
 import timeTool from '../../assets/js/timeTool.js'
 import axios from 'axios'
+import scrollReveal from 'scrollreveal';
 
 export default{
 	name: "Home",
@@ -63,7 +64,8 @@ export default{
 			//浏览器
       brower: 'chrome',
 			//操作系统
-      os: 'windows7' 
+      os: 'windows7' ,
+			scrollReveal: scrollReveal()
 		}
 	},
 	created() {
@@ -126,6 +128,23 @@ export default{
 		})
 	},
 	mounted() {
+		//初始化scrollReveal
+		this.scrollReveal.reveal('.fadeInTop', {
+			// 动画的时长
+			duration: 800,
+			// 延迟时间
+			delay: 0,
+			// 动画开始的位置，'bottom', 'left', 'top', 'right'
+			origin: 'top',
+			// 回滚的时候是否再次触发动画
+			reset: false,
+			// 在移动端是否使用动画
+			mobile: false,
+			// 滚动的距离，单位可以用%，rem等
+			distance: '100px',
+			// 其他可用的动画效果
+			easing: 'linear',
+		})
 		let that = this	
 		//初始化标语
 		axios.get('http://121.40.244.57:3000/article/getSlogan').then(function(res) {

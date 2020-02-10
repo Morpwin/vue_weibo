@@ -30,3 +30,10 @@ a {color: #25a4bb;text-decoration: none;}
 .h1{
 	margin: 0;
 }
+body{
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
