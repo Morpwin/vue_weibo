@@ -19,7 +19,7 @@ button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 mark{background-color:transparent}
 a,ins,s,u,del{text-decoration:none}
 sup,sub{vertical-align:baseline}
-html {overflow-x: hidden;height: 100%;-webkit-tap-highlight-color: transparent;}
+html {overflow-x: hidden;height: 100%;-webkit-tap-highlight-color: transparent; background-color: rgba(0,0,0,0);}
 body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;color: #666;line-height: 1;-webkit-text-size-adjust: none;}
 hr {height: 2px;margin: 1px 0;border: medium none;border-top: 2px solid #cacaca;}
 a {color: #25a4bb;text-decoration: none;}

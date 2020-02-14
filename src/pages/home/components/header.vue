@@ -88,6 +88,9 @@ export default{
 		justify-content: flex-end;
 		align-items: center;
 	}
+	@media screen and (max-width: 640px) {
+		
+	}
 	.header .ul{
 		display: flex;
 		height: 60px;
@@ -117,6 +120,7 @@ export default{
 		margin-right: 10px;
 		padding: 0 10px 0 22px;
 		color: #666;
+		font-size: 12px;
 	}
 	.search{
 		position: relative;

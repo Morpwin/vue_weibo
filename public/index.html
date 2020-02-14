@@ -30,6 +30,15 @@
     sessionStorage.setItem('area', returnCitySN["cname"])
 	</script>
 	<script src="static/aixin.js"></script>
-	<script src="static/yinghua.js"></script>
+	<script>
+		var system = {};
+		    var p = navigator.platform;
+		    system.win = p.indexOf("Win") == 0;
+		    system.mac = p.indexOf("Mac") == 0;
+		    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+		    if (system.win || system.mac || system.xll) {//如果是电脑
+		      $.getScript("static/yinghua.js");
+		    }
+	</script>
 </html>
 

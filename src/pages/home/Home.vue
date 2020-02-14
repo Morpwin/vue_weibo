@@ -1,14 +1,16 @@
 <template>
 	<div class="home">
-		<home-zan @listenClickZan="listenClickZan" :zan="zan"></home-zan>
-		<home-header class="fadeInTop"></home-header>
-		<home-swiper :sloganData="sloganData"></home-swiper>
+		<home-zan @listenClickZan="listenClickZan" :zan="zan" class="mobile"></home-zan>
+		<transition name="head">
+			<home-header  v-show="headerFlag"></home-header>
+		</transition>
+		<home-swiper :sloganData="sloganData" class="mobile"></home-swiper>
 		<div class="content">
 			<home-article :dataShow="dataShow"></home-article>
-			<home-me></home-me>
+			<home-me class="mobile"></home-me>
 		</div>
-		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext"></home-pagination>
-		<home-footer></home-footer>
+		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="mobile"></home-pagination>
+		<home-footer class="mobile"></home-footer>
 	</div>
 </template>
 	
@@ -65,7 +67,11 @@ export default{
       brower: 'chrome',
 			//操作系统
       os: 'windows7' ,
-			scrollReveal: scrollReveal()
+			scrollReveal: scrollReveal(),
+			//头部根据滚动显示
+			headerFlag: true,
+			//移动端
+			mobileFlag: true
 		}
 	},
 	created() {
@@ -155,7 +161,14 @@ export default{
 			if(res.data.code == 1) {
 				this.zan = res.data.zan
 			}
-		}) 
+		})
+    //给页面绑定滑轮滚动事件  
+    if (document.addEventListener) {  //firefox  
+        document.addEventListener('DOMMouseScroll', this.mousewheelFunc, false)
+    }  
+    //滚动滑轮触发mousewheelFunc方法  //ie 谷歌  
+    window.onmousewheel = document.onmousewheel = this.mousewheelFunc
+		window.onscroll = this.scrollFunc
 	},
 	methods: {
 		listenNext() {
@@ -201,6 +214,31 @@ export default{
 					}
 				}
 			})			
+		},
+		mousewheelFunc(e) {
+			e = e || window.event;  
+			if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件               
+				if (e.wheelDelta > 0) { //当滑轮向上滚动时  
+					this.headerFlag = true  
+				}  
+				if (e.wheelDelta < 0) { //当滑轮向下滚动时  
+					this.headerFlag = false  
+				}  
+			} 
+			else if (e.detail) {    //Firefox滑轮事件  
+				if (e.detail> 0) { //当滑轮向上滚动时  
+					this.headerFlag = true  
+				}  
+				if (e.detail< 0) { //当滑轮向下滚动时  
+					this.headerFlag = false  
+				}  
+			}  
+		},
+		scrollFunc() {
+			let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+			if(scrollTop < 60) {
+				this.headerFlag = true
+			}
 		}
 	}
 }
@@ -216,5 +254,11 @@ export default{
 	.content{
 		margin-top: 10px;
 		display: flex;
+	}
+	.head-enter, .head-leave-to {
+		transform: translateY(-60px);
+	}
+	.head-enter-active, .head-leave-active {
+		transition: all 0.8s linear;
 	}
 </style>
