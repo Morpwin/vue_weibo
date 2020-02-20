@@ -12,6 +12,11 @@
 		<link rel="stylesheet" href="static/waifu.css">
     <title>孜然粉的博客</title>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script type="text/javascript">
+		  sessionStorage.setItem('ip', returnCitySN["cip"])
+		  sessionStorage.setItem('area', returnCitySN["cname"])
+		</script>
   </head>
   <body>
     <div id="app"></div>
@@ -24,11 +29,6 @@
 	<script src="static/waifu-tips.js"></script>
 	<script src="static/live2d.js"></script>
 	<script type="text/javascript">initModel("static/")</script>
-	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-	<script type="text/javascript">
-    sessionStorage.setItem('ip', returnCitySN["cip"])
-    sessionStorage.setItem('area', returnCitySN["cname"])
-	</script>
 	<script src="static/aixin.js"></script>
 	<script>
 		var system = {};

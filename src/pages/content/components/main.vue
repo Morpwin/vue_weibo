@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import scrollReveal from 'scrollreveal'
 export default{
 	name: "ContentMain",
 	props:{
@@ -14,26 +13,11 @@ export default{
 	},
 	data() {
 		return {
-			scrollReveal: scrollReveal()
+
 		}
 	},
 	mounted() {
-		this.scrollReveal.reveal(".fadeInLeft", {
-			// 动画的时长
-			duration: 800,
-			// 延迟时间
-			delay: 0,
-			// 动画开始的位置，'bottom', 'left', 'top', 'right'
-			origin: 'left',
-			// 回滚的时候是否再次触发动画
-			reset: false,
-			// 在移动端是否使用动画
-			mobile: false,
-			// 滚动的距离，单位可以用%，rem等
-			distance: '200px',
-			// 其他可用的动画效果
-			easing: 'linear'
-		})
+
 	}
 }
 </script>
@@ -93,37 +77,37 @@ export default{
 		margin: 10px 0 10px 20px;
 	}
 	.main h1{
-		font-size: 24px;
+		font-size: 24px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h2{
-		font-size: 22px;
+		font-size: 22px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h3{
-		font-size: 20px;
+		font-size: 20px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h4{
-		font-size: 18px;
+		font-size: 18px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h5{
-		font-size: 16px;
+		font-size: 16px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;
 	}
 	.main h6{
-		font-size: 14px;
+		font-size: 14px !important;
 		font-weight: 800;
 		line-height: 60px;
 		color: #10D07A;

@@ -5,16 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-		articleList: []
+		headerFlag: true
   },
   mutations: {
-		getArticle(state,data) {
-			state.articleList = data
+		changeHeaderFlag(state,data) {
+			state.headerFlag = data
 		}
   },
   actions: {
-		getArticleFun(context, data) {
-			context.commit("getArticle",data)
+		changeHeaderFlagFun(context, data) {
+			context.commit("changeHeaderFlag",data)
 		}
   },
   modules: {

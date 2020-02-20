@@ -1,12 +1,14 @@
 <template>
 	<div class="article">
-		<home-header></home-header>
-		<div class="content">
+		<transition name="head">
+			<home-header  v-show="this.$store.state.headerFlag"></home-header>
+		</transition>
+		<div class="art_content">
 			<home-article :dataShow="dataShow" v-if="!flag"></home-article>
 			<article-tip v-if="flag"></article-tip>
-			<home-me></home-me>
+			<home-me class="mobile"></home-me>
 		</div>
-		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext"></home-pagination>
+		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="mobile fadeInLeft"></home-pagination>
 
 	</div>
 </template>
@@ -18,6 +20,7 @@ import HomeMe from '.././home/components/me'
 import HomePagination from '.././home/components/pagination'
 import ArticleTip from "./components/tip"
 import axios from "axios"
+
 export default{
 	name: "Article",
 	components: {
@@ -108,8 +111,8 @@ export default{
 		min-width: 320px;
 		margin: 0 auto;
 	}
-	.content{
-		margin-top: 10px;
+	.art_content{
+		margin-top: 60px;
 		display: flex;
 	}
 </style>

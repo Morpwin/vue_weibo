@@ -69,12 +69,20 @@ export default{
 	.box{
 		position: relative;
 		margin-top: 80px;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		padding-bottom: 500px;
+		height: 0;
+		background-color: #eaeaea;
 	}
 	.wrapper{
 		width: 100%;
 		margin: 20px auto 0 auto;
 		background-color: #eee;
 		box-shadow: 0 0 8px #ccc;
+		
 	}
 	.wrapper img{
 		
@@ -82,7 +90,7 @@ export default{
 	.mask{
 		width: 360px;
 		height: 240px;
-		background-color: #fff;
+		background-color: rgba(255,255,255,.52);
 		display: flex;
 		justify-content: center;
 		align-content: center;

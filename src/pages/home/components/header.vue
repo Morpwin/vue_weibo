@@ -3,7 +3,20 @@
 		<div class="contain">
 			<ul ref="ul" class="ul">
 				<li class="now"><router-link tag="a" to="/">首页</router-link></li>
-				<li><router-link tag="a" :to="{path:'/article',query:{type:'all'}}">文章</router-link></li>
+				<li class="mobile"><router-link tag="a" :to="{path:'/article',query:{type:'all'}}">文章</router-link></li>
+				<li class="mobile_header" >
+					<span @click.stop="mobile_header">分类</span>
+					<ul v-show="more">
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Html'}}">Html</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Css'}}">Css</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Javascript'}}">Javascript</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Vue'}}">Vue</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Es6'}}">Es6</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'Nodejs'}}">Nodejs</router-link></li>
+						<li><router-link tag="a" :to="{path:'/article',query:{type:'计算机网络'}}">计算机网络</router-link></li>
+					</ul>
+				</li>
+				<li><router-link tag="a" to="/message">留言板</router-link></li>
 			</ul>
 			<div class="search">
 				<span class="img-fluid"></span>
@@ -25,7 +38,8 @@ export default{
 			keyword: "",
 			articleList: [],
 			newlist: [],
-			showList: false
+			showList: false,
+			more: false
 		}
 	},
 	watch: {
@@ -45,6 +59,14 @@ export default{
 				this.showList = false
 			}
 		},
+		more: function (val) {
+			if(val == true) {
+				document.onclick = ""
+				document.onclick =  () => {
+					this.more = false
+				}
+			}
+		}
 	},
 	created() {
 		let that = this
@@ -58,17 +80,48 @@ export default{
 		let ul = this.$refs.ul
 		if(window.location.href == "http://121.40.244.57/dist/index.html#/") {
 			ul.children[0].className = "now"
-			ul.children[1].className = ""
+			ul.children[1].className = "mobile"
+			ul.children[3].className = ""
 		}
 		else if(window.location.href.includes("http://121.40.244.57/dist/index.html#/article") || window.location.href.includes("http://121.40.244.57/dist/index.html#/content") ) {
-			ul.children[1].className = "now"
+			ul.children[3].className = ""
+			ul.children[1].className = "now mobile"
 			ul.children[0].className = ""
+		}
+		else if(window.location.href.includes("http://121.40.244.57/dist/index.html#/message")){
+			ul.children[3].className = "now"
+			ul.children[1].className = "mobile"
+			ul.children[0].className = ""
+		}
+	},
+	methods: {
+		mobile_header() {
+			this.more = true
 		}
 	}
 }
 </script>
 
 <style scoped>
+	.mobile_header {
+		display: none;
+	}
+	.header .ul .mobile_header {
+		font-size: 14px;
+	}
+	.header .ul .mobile_header span {
+		cursor: pointer;
+	}
+	.header .ul .mobile_header ul{
+		background-color: rgba(255,255,255,.9);
+	}
+	.header .ul .mobile_header ul li{
+		border-bottom: none;
+		color: #666;
+	}
+	.header .ul .mobile_header ul li a {
+		font-size: 12px;
+	}
 	.header{
 		width: 100%;
 		height: 60px;
@@ -88,9 +141,6 @@ export default{
 		justify-content: flex-end;
 		align-items: center;
 	}
-	@media screen and (max-width: 640px) {
-		
-	}
 	.header .ul{
 		display: flex;
 		height: 60px;
@@ -103,7 +153,6 @@ export default{
 		height: 55px;
 		line-height: 55px;
 		text-align: center;
-		border-bottom: 5px solid #fff;
 	}
 	.header .ul li.now{
 		border-bottom: 5px solid #10D07A;

@@ -1,9 +1,11 @@
 <template>
 	<div class="content">
-		<home-header></home-header>
+		<transition name="head">
+			<home-header  v-show="this.$store.state.headerFlag"></home-header>
+		</transition>
 		<div class="box">
 			<content-main :article="article"></content-main>
-			<home-me></home-me>
+			<home-me class="mobile"></home-me>
 		</div>
 	</div>
 </template>
@@ -13,6 +15,7 @@ import HomeHeader from '.././home/components/header'
 import HomeMe from '.././home/components/me'
 import ContentMain from './components/main'
 import axios from 'axios'
+
 export default{
 	name: "Content",
 	components: {
@@ -32,6 +35,8 @@ export default{
 			that.article = res.data.article
 			window.console.log(that.article)
 		})
+	},
+	methods: {
 		
 	}
 }
@@ -45,7 +50,7 @@ export default{
 		margin: 0 auto;
 	}
 	.box{
-		margin-top: 10px;
+		margin-top: 60px;
 		display: flex;
 	}
 </style>

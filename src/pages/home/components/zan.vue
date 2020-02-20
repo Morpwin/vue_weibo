@@ -9,6 +9,7 @@
 
 <script>
 import axios from 'axios'
+import * as sysTools from '@/assets/js/sysTools.js'
 export default {
 	name: "HomeZan",
 	props: {
@@ -20,7 +21,8 @@ export default {
 			zanImg: require("../../../assets/images/zan.png"),
 			show: false,
 			add_num: false,
-			zanFlag: ""
+			zanFlag: "",
+			ip: ""
 		}
 	},
 	watch: {
@@ -39,18 +41,23 @@ export default {
 	mounted() {
 		let num = this.$refs.num
 		let ip = sessionStorage.getItem('ip')
-		axios.get('http://121.40.244.57:3000/people/getPeople',{params: {ip: ip}}).then((res) => {
+		window.console.log(ip)
+		let brower = sysTools.GetCurrentBrowser()
+		let os = sysTools.GetOs()
+		axios.get('http://121.40.244.57:3000/people/getPeople',{params: {ip: ip, brower: brower, os: os}}).then((res) => {
 			if(res.data.code == 1) {
 				window.console.log(res.data.data)
 				this.zanFlag = res.data.data.zanFlag
-				if(this.zanFlag) {
-					num.style.backgroundColor = "#10D07A"
-					this.zanImg = require("../../../assets/images/zan2.png")
-				}
-				else {
-					this.zanImg = require("../../../assets/images/zan.png")
-					num.style.backgroundColor = "#EAEAEA"
-				}
+				this.$nextTick(() => {
+					if(this.zanFlag) {
+						num.style.backgroundColor = "#10D07A"
+						this.zanImg = require("../../../assets/images/zan2.png")
+					}
+					else {
+						this.zanImg = require("../../../assets/images/zan.png")
+						num.style.backgroundColor = "#EAEAEA"
+					}
+				})
 			}
 		})
 	},

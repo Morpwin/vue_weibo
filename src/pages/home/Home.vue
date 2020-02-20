@@ -2,14 +2,14 @@
 	<div class="home">
 		<home-zan @listenClickZan="listenClickZan" :zan="zan" class="mobile"></home-zan>
 		<transition name="head">
-			<home-header  v-show="headerFlag"></home-header>
+			<home-header  v-show="this.$store.state.headerFlag"></home-header>
 		</transition>
 		<home-swiper :sloganData="sloganData" class="mobile"></home-swiper>
 		<div class="content">
 			<home-article :dataShow="dataShow"></home-article>
 			<home-me class="mobile"></home-me>
 		</div>
-		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="mobile"></home-pagination>
+		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="mobile fadeInLeft"></home-pagination>
 		<home-footer class="mobile"></home-footer>
 	</div>
 </template>
@@ -44,7 +44,7 @@ export default{
       // 所有页面的数据
       totalPage: [],
       // 每页显示数量
-      pageSize: 6,
+      pageSize: 8,
       // 共几页
       pageNum: 1,
       // 当前显示的数据
@@ -68,8 +68,6 @@ export default{
 			//操作系统
       os: 'windows7' ,
 			scrollReveal: scrollReveal(),
-			//头部根据滚动显示
-			headerFlag: true,
 			//移动端
 			mobileFlag: true
 		}
@@ -125,25 +123,27 @@ export default{
 			for(let i in res.data.data) {
 				that.articleList.push(res.data.data[i])
 			}
-			that.$store.dispatch("getArticleFun",that.articleList)
 			that.pageNum = Math.ceil(that.articleList.length / that.pageSize) || 1;	
 			for (let i = 0; i < that.pageNum; i++) {
 				that.totalPage[i] = that.articleList.slice(that.pageSize * i, that.pageSize * (i + 1))
 			}
 			that.dataShow = that.totalPage[that.currentPage].reverse()
 		})
+// 		let sqls = window.matchMedia('(max-width:640px)')
+// 		that.mediaMatches(sqls); //页面首次加载
+// 		sqls.addListener(that.mediaMatches)
 	},
 	mounted() {
 		//初始化scrollReveal
-		this.scrollReveal.reveal('.fadeInTop', {
+		this.scrollReveal.reveal('.fadeInBottom', {
 			// 动画的时长
 			duration: 800,
 			// 延迟时间
 			delay: 0,
 			// 动画开始的位置，'bottom', 'left', 'top', 'right'
-			origin: 'top',
+			origin: 'bottom',
 			// 回滚的时候是否再次触发动画
-			reset: false,
+			reset: true,
 			// 在移动端是否使用动画
 			mobile: false,
 			// 滚动的距离，单位可以用%，rem等
@@ -162,13 +162,6 @@ export default{
 				this.zan = res.data.zan
 			}
 		})
-    //给页面绑定滑轮滚动事件  
-    if (document.addEventListener) {  //firefox  
-        document.addEventListener('DOMMouseScroll', this.mousewheelFunc, false)
-    }  
-    //滚动滑轮触发mousewheelFunc方法  //ie 谷歌  
-    window.onmousewheel = document.onmousewheel = this.mousewheelFunc
-		window.onscroll = this.scrollFunc
 	},
 	methods: {
 		listenNext() {
@@ -215,31 +208,14 @@ export default{
 				}
 			})			
 		},
-		mousewheelFunc(e) {
-			e = e || window.event;  
-			if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件               
-				if (e.wheelDelta > 0) { //当滑轮向上滚动时  
-					this.headerFlag = true  
-				}  
-				if (e.wheelDelta < 0) { //当滑轮向下滚动时  
-					this.headerFlag = false  
-				}  
-			} 
-			else if (e.detail) {    //Firefox滑轮事件  
-				if (e.detail> 0) { //当滑轮向上滚动时  
-					this.headerFlag = true  
-				}  
-				if (e.detail< 0) { //当滑轮向下滚动时  
-					this.headerFlag = false  
-				}  
-			}  
-		},
-		scrollFunc() {
-			let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-			if(scrollTop < 60) {
-				this.headerFlag = true
-			}
-		}
+// 		mediaMatches(sqls) {
+// 			if(sqls.matches) {
+// 				this.dataShow = this.articleList.reverse()
+// 			}
+// 			else {
+// 				this.dataShow = this.totalPage[this.currentPage]
+// 			}
+// 		}
 	}
 }
 </script>
@@ -255,10 +231,5 @@ export default{
 		margin-top: 10px;
 		display: flex;
 	}
-	.head-enter, .head-leave-to {
-		transform: translateY(-60px);
-	}
-	.head-enter-active, .head-leave-active {
-		transition: all 0.8s linear;
-	}
+	
 </style>
