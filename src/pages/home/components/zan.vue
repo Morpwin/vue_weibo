@@ -46,18 +46,20 @@ export default {
 		let os = sysTools.GetOs()
 		axios.get('http://121.40.244.57:3000/people/getPeople',{params: {ip: ip, brower: brower, os: os}}).then((res) => {
 			if(res.data.code == 1) {
-				window.console.log(res.data.data)
-				this.zanFlag = res.data.data.zanFlag
-				this.$nextTick(() => {
-					if(this.zanFlag) {
-						num.style.backgroundColor = "#10D07A"
-						this.zanImg = require("../../../assets/images/zan2.png")
-					}
-					else {
-						this.zanImg = require("../../../assets/images/zan.png")
-						num.style.backgroundColor = "#EAEAEA"
-					}
-				})
+				if(res.data.data) {
+					window.console.log(res.data.data)
+					this.zanFlag = res.data.data.zanFlag
+					this.$nextTick(() => {
+						if(this.zanFlag) {
+							num.style.backgroundColor = "#10D07A"
+							this.zanImg = require("../../../assets/images/zan2.png")
+						}
+						else {
+							this.zanImg = require("../../../assets/images/zan.png")
+							num.style.backgroundColor = "#EAEAEA"
+						}
+					})
+				}			
 			}
 		})
 	},

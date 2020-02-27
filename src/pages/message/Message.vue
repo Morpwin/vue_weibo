@@ -8,7 +8,7 @@
 				<message-post></message-post>
 				<message-get></message-get>
 			</div>
-			<home-me></home-me>
+			<home-me class="mobile"></home-me>
 		</div>
 	</div>	
 </template>
@@ -37,7 +37,7 @@ export default {
 		margin: 0 auto;	
 	}
 	.message_box2 {
-		width: 65%;
+		width: 100%;
 	}
 	.message_box {
 		display: flex;

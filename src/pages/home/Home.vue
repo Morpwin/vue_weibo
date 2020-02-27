@@ -9,7 +9,7 @@
 			<home-article :dataShow="dataShow"></home-article>
 			<home-me class="mobile"></home-me>
 		</div>
-		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="mobile fadeInLeft"></home-pagination>
+		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="fadeInLeft"></home-pagination>
 		<home-footer class="mobile"></home-footer>
 	</div>
 </template>
@@ -129,9 +129,7 @@ export default{
 			}
 			that.dataShow = that.totalPage[that.currentPage].reverse()
 		})
-// 		let sqls = window.matchMedia('(max-width:640px)')
-// 		that.mediaMatches(sqls); //页面首次加载
-// 		sqls.addListener(that.mediaMatches)
+
 	},
 	mounted() {
 		//初始化scrollReveal
@@ -208,14 +206,6 @@ export default{
 				}
 			})			
 		},
-// 		mediaMatches(sqls) {
-// 			if(sqls.matches) {
-// 				this.dataShow = this.articleList.reverse()
-// 			}
-// 			else {
-// 				this.dataShow = this.totalPage[this.currentPage]
-// 			}
-// 		}
 	}
 }
 </script>
@@ -231,5 +221,4 @@ export default{
 		margin-top: 10px;
 		display: flex;
 	}
-	
 </style>

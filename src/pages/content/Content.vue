@@ -25,7 +25,8 @@ export default{
 	},
 	data() {
 		return {
-			articleId: this.$route.params.articleId,
+			articleId: this.$route.query._id,
+			title: this.$route.query.title,
 			article: {}
 		}
 	},
@@ -33,12 +34,15 @@ export default{
 		let that = this
 		axios.get("http://121.40.244.57:3000/article/getArticle",{params: {articleId: that.articleId}}).then(function (res) {
 			that.article = res.data.article
-			window.console.log(that.article)
 		})
 	},
 	methods: {
 		
-	}
+	},
+	beforeRouteEnter(to, from, next) {
+		document.title = `${to.query.title} - 孜然粉的博客`
+    next()
+	},
 }
 </script>
 

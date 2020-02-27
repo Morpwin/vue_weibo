@@ -1,8 +1,8 @@
 <template>
 	<div class="article">
 			<div class="border-bottom article_box Left" v-for="item in dataShow" :key="item._id" id="article_box">	
-				<router-link class="h1" :to="'/content/' + item._id" tag="h1">{{item.title}}</router-link>
-				<router-link class="p" :to="'/content/' + item._id" tag="p" v-html="item.tip">{{item.tip}}</router-link>
+				<router-link class="h1" :to="{path:'/content',query:{_id:item._id, title: item.title}}" tag="h1">{{item.title}}</router-link>
+				<router-link class="p" :to="{path:'/content',query:{_id:item._id, title: item.title}}" tag="p" v-html="item.tip">{{item.tip}}</router-link>
 				<router-link tag="div" class="type" :to="{path:'/article',query:{type:item.type}}">{{item.type}}</router-link>
 				<time>{{item.time}}</time>
 			</div>
@@ -48,19 +48,17 @@ export default{
 						
 					},
 					afterReset: () => {
-
 						
 					}
 				})
 			})
-		}
+		},
 	},
 	mounted() {
-		
 	},
 	methods: {
 
-	}
+	},
 }
 </script>
 
@@ -72,8 +70,9 @@ export default{
 		transition: all 0.8s linear;
 	}
 	.article{
-		flex: 1;
-		width: 70%;
+		width: 100%;
+		min-width: 320px;
+		max-width: 1200px;
 	}
 	.article_box{
 		padding: 20px 20px 20px 20px;

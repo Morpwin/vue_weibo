@@ -92,10 +92,11 @@ export default {
 				}  
 			} 
 			else if (e.detail) {    //Firefox滑轮事件  
-				if (e.detail> 0) { //当滑轮向上滚动时  
+			window.console.log(e.detail)
+				if (e.detail < 0) { //当滑轮向上滚动时  
 					this.$store.dispatch("changeHeaderFlagFun",true)
 				}  
-				if (e.detail< 0) { //当滑轮向下滚动时  
+				if (e.detail > 0) { //当滑轮向下滚动时  
 					this.$store.dispatch("changeHeaderFlagFun",false)
 				}  
 			}  
@@ -129,9 +130,15 @@ export default {
 		#app .article {
 			margin-top: 40px;
 		}
+		#app .article_box {
+			visibility: visible;
+		}
 		#app .header {
 			width: 100%;
 			height: 60px;
+		}
+		#app .header li {
+
 		}
 		#app .contain {
 			width: 100%;
@@ -144,6 +151,13 @@ export default {
 		}
 		#app .mobile_header {
 			display: block;
+		}
+		#app .message_box2 {
+			width: 100%;
+			padding: 10px;
+		}
+		#app .get .get_content , #app .get .get_name , #app .get .get_time{
+			font-size: 12px;
 		}
 	}
 </style>

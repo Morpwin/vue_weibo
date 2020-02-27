@@ -22,7 +22,7 @@
 				<span class="img-fluid"></span>
 				<input type="text" v-model="keyword">
 				<ul v-if="showList">
-					<router-link tag="li" v-for="(item, index) in newlist" :key="index" :to="'/content/' + item._id">{{item.title}}</router-link>
+					<router-link tag="li" v-for="(item, index) in newlist" :key="index" :to="{path:'/content',query:{_id:item._id, title: item.title}}">{{item.title}}</router-link>
 				</ul>
 			</div>
 		</div>
@@ -78,17 +78,17 @@ export default{
 	},
 	mounted() {
 		let ul = this.$refs.ul
-		if(window.location.href == "http://121.40.244.57/dist/index.html#/") {
+		if(window.location.href == "http://www.ziranfans.com/") {
 			ul.children[0].className = "now"
 			ul.children[1].className = "mobile"
 			ul.children[3].className = ""
 		}
-		else if(window.location.href.includes("http://121.40.244.57/dist/index.html#/article") || window.location.href.includes("http://121.40.244.57/dist/index.html#/content") ) {
+		else if(window.location.href.includes("http://www.ziranfans.com/article") || window.location.href.includes("http://www.ziranfans.com/content") ) {
 			ul.children[3].className = ""
 			ul.children[1].className = "now mobile"
 			ul.children[0].className = ""
 		}
-		else if(window.location.href.includes("http://121.40.244.57/dist/index.html#/message")){
+		else if(window.location.href.includes("http://www.ziranfans.com/message")){
 			ul.children[3].className = "now"
 			ul.children[1].className = "mobile"
 			ul.children[0].className = ""
@@ -107,16 +107,18 @@ export default{
 		display: none;
 	}
 	.header .ul .mobile_header {
-		font-size: 14px;
+		
 	}
 	.header .ul .mobile_header span {
+		color: #000000;
+		font-size: 14px;
 		cursor: pointer;
 	}
 	.header .ul .mobile_header ul{
 		background-color: rgba(255,255,255,.9);
 	}
 	.header .ul .mobile_header ul li{
-		border-bottom: none;
+		border-bottom: 5px solid rgba(255, 255, 255, .12);
 		color: #666;
 	}
 	.header .ul .mobile_header ul li a {
@@ -153,6 +155,7 @@ export default{
 		height: 55px;
 		line-height: 55px;
 		text-align: center;
+		border-bottom: 5px solid rgba(255, 255, 255, .12);
 	}
 	.header .ul li.now{
 		border-bottom: 5px solid #10D07A;

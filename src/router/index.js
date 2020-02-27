@@ -10,23 +10,27 @@ Vue.use(VueRouter)
 const routes = [{
 	path: '/',
 	name: 'Home',
-	component: Home	
+	component: Home	,
+	meta: {title: "孜然粉的博客"}
 },{
 	path: '/article',
 	name: 'Article',
-	component: Article
+	component: Article,
+	meta: {title: "文章 - 孜然粉的博客"}
 },{
-	path: '/content/:articleId',
+	path: '/content',
 	name: 'Content',
 	component: Content
 },{
 	path: '/message',
 	name: 'Message',
-	component: Message
+	component: Message,
+	meta: {title: "留言板 - 孜然粉的博客"}
 }
 ]
 
 const router = new VueRouter({
+	mode: "history",
   routes
 })
 

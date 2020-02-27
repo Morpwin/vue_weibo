@@ -78,7 +78,6 @@ export default{
 
 <style scoped="scoped">
 	.me{
-		width: 30%;
 		margin-left: 20px;
 		margin-right: 20px;
 	}

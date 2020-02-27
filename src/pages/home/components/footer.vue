@@ -1,8 +1,8 @@
 <template>
 	<div class="footer">
 		联系我 
-		<div class="qq">QQ:563604332@qq.com</div>
-		<div class="wx">WX:Morpwin</div>
+		<div class="qq">QQ:563604332@qq.com&nbsp;&nbsp;WX:Morpwin</div>
+		<div class="wx">粤ICP备20009928号</div>
 	</div>
 </template>
 

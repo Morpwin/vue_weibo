@@ -142,7 +142,6 @@ export default {
 	.get {
 		width: 100%;
 		margin-top: 40px;
-		
 	}
 	.get_box {
 		position: relative;
