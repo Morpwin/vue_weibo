@@ -5,6 +5,10 @@
 ## 后台源码：
 
     https://github.com/Morpwin/koa2_weibo
+    
+### 运行
+
+    npm run serve   //进入根目录
 
 ## 前端涉及知识
 
