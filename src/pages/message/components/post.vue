@@ -65,7 +65,7 @@ export default {
 		background-color: rgba(255,255,255,0.5);
 	}
 	.post .text {
-		width: 70%;
+		width: 90%;
 		height: 200px;
 		border: 1px solid #eaeaea;
 		background-color: rgba(255,255,255,0.5);

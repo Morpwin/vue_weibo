@@ -26,10 +26,10 @@ export default{
 
 <style>
 	.main {
-		flex: 1;
 		margin-top: 30px;
 		width: 70%;
 		padding-left: 20px;
+		flex: 1;
 	}
 	/* table 样式 */
 	.main table {

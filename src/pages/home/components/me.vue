@@ -2,10 +2,12 @@
 	<div class="me" >
 		<div class="about_me fadeInRight">
 			<div class="title_me">关于作者</div>
-			<h1>孜然粉</h1>
-			<h2>一个前端小白</h2>
+			
+			<!-- <h2>一个前端小白</h2>
 			<h3>巨蟹座</h3>
-			<h4>初学HTML、CSS、JS，有了解Vue</h4>
+			<h4>初学HTML、CSS、JS，有了解Vue</h4> -->
+			<a href="http://127.0.0.1:8848/%E7%AE%80%E5%8E%86/index.html" target="_blank"><img src="../../../assets/images/me.jpg" alt="博客头像"></a>
+			<h1>孜然粉</h1>
 		</div>
 		<div class="contact fadeInRight">
 			<div class="title_contact">联系我</div>
@@ -105,10 +107,21 @@ export default{
 	}
 	.about_me h1{
 		color: #10D07A;
+		cursor: pointer;
 	}
 	.about_me h1,h2,h3,h4{
 		line-height: 30px;
 		font-size: 14px;
+	}
+	.about_me img {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+	.about_me img:hover{
+		transform: rotate(360deg);
+		transition: all .5s linear;
 	}
 	.type ul{
 		display: flex;

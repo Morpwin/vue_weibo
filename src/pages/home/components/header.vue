@@ -70,6 +70,7 @@ export default{
 	},
 	created() {
 		let that = this
+		// "http://" + window.location.host + "/article/getArticle"
 		axios.get('http://121.40.244.57:3000/article/getArticle').then(function(res) {
 			for(let i in res.data.data) {
 				that.articleList.push(res.data.data[i])
@@ -78,17 +79,17 @@ export default{
 	},
 	mounted() {
 		let ul = this.$refs.ul
-		if(window.location.href == "http://www.ziranfans.com/") {
+		if(window.location.href == "http://" + window.location.host + "/") {
 			ul.children[0].className = "now"
 			ul.children[1].className = "mobile"
 			ul.children[3].className = ""
 		}
-		else if(window.location.href.includes("http://www.ziranfans.com/article") || window.location.href.includes("http://www.ziranfans.com/content") ) {
+		else if(window.location.href.includes("http://" + window.location.host + "/article") || window.location.href.includes("http://" + window.location.host + "/content") ) {
 			ul.children[3].className = ""
 			ul.children[1].className = "now mobile"
 			ul.children[0].className = ""
 		}
-		else if(window.location.href.includes("http://www.ziranfans.com/message")){
+		else if(window.location.href.includes("http://" + window.location.host + "/message")){
 			ul.children[3].className = "now"
 			ul.children[1].className = "mobile"
 			ul.children[0].className = ""
