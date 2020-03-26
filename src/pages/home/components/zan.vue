@@ -44,7 +44,7 @@ export default {
 		window.console.log(ip)
 		let brower = sysTools.GetCurrentBrowser()
 		let os = sysTools.GetOs()
-		axios.get('http://121.40.244.57:3000/people/getPeople',{params: {ip: ip, brower: brower, os: os}}).then((res) => {
+		axios.get("http://" + window.location.hostname + ":3000/people/getPeople",{params: {ip: ip, brower: brower, os: os}}).then((res) => {
 			if(res.data.code == 1) {
 				if(res.data.data) {
 					window.console.log(res.data.data)

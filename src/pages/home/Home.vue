@@ -85,14 +85,14 @@ export default{
 			time: timeTool()
 		}
 		//设置访客信息，如果是新访客，flag = false，旧访客，flag = true
-		axios.post('http://121.40.244.57:3000/people/setPeople',peopleData).then(res => {   
+		axios.post("http://" + window.location.hostname + ":3000/people/setPeople",peopleData).then(res => {   
 			if(res.data.code == 1) {
 				//保留访问flag
 				this.visitFlag = res.data.visitFlag  
 				//保留赞flag
 				this.zanFlag = res.data.zanFlag
 				//获取访问量
-				axios.get('http://121.40.244.57:3000/sign/getVisits').then(res => {  
+				axios.get("http://" + window.location.hostname + ":3000/sign/getVisits").then(res => {  
 					if(res.data.code == 1) {
 						//若是新访客，则访问量+1，若不是，保持不变
 						if(!this.visitFlag) {
@@ -102,7 +102,7 @@ export default{
 							this.visits = res.data.visits
 						}
 						//设置访问量
-						axios.post('http://121.40.244.57:3000/sign/setVisits',{visits: this.visits}).then((res) => {
+						axios.post("http://" + window.location.hostname + ":3000/sign/setVisits",{visits: this.visits}).then((res) => {
 							if(res.data.code == 1) {
 								//打印访问量
 								window.console.log("visits:" + this.visits)  
@@ -119,7 +119,8 @@ export default{
 			window.console.log(err)
 		})
 		//初始化文章
-		axios.get('http://121.40.244.57:3000/article/getArticle').then(function(res) {
+		window.console.log("http://" + window.location.hostname + ":3000/article/getArticle")
+		axios.get("http://" + window.location.hostname + ":3000/article/getArticle").then(function(res) {
 			for(let i in res.data.data) {
 				that.articleList.push(res.data.data[i])
 			}
@@ -151,11 +152,11 @@ export default{
 		})
 		let that = this	
 		//初始化标语
-		axios.get('http://121.40.244.57:3000/article/getSlogan').then(function(res) {
+		axios.get("http://" + window.location.hostname + ":3000/article/getSlogan").then(function(res) {
 			that.sloganData = res.data.data[0]
 		})
 		//初始化赞
-		axios.get("http://121.40.244.57:3000/sign/getZan").then(res => {
+		axios.get("http://" + window.location.hostname + ":3000/sign/getZan").then(res => {
 			if(res.data.code == 1) {
 				this.zan = res.data.zan
 			}
@@ -181,13 +182,13 @@ export default{
 		listenClickZan() {
 			let that = this
 			//获取当前的点赞量
-			axios.get("http://121.40.244.57:3000/sign/getZan").then(function (res) {
+			axios.get("http://" + window.location.hostname + ":3000/sign/getZan").then(function (res) {
 				if(res.data.code == 1) {
 					window.console.log("res.data.zan:" + res.data.zan)
 					if(!that.zanFlag) {
 						that.zan = res.data.zan + 1
 						window.console.log("that.zan:" + that.zan)
-						axios.post("http://121.40.244.57:3000/sign/setZan", {zan: that.zan}).then(function (res) {
+						axios.post("http://" + window.location.hostname + ":3000/sign/setZan", {zan: that.zan}).then(function (res) {
 							if(res.data.code == 1) {
 								that.zanFlag = true
 								let peopleData = {
@@ -197,7 +198,7 @@ export default{
 									time: timeTool(),
 									zanFlag: that.zanFlag
 								}
-								axios.post("http://121.40.244.57:3000/people/setPeople", peopleData).then(res => {
+								axios.post("http://" + window.location.hostname + ":3000/people/setPeople", peopleData).then(res => {
 									window.console.log(res)
 								})
 							}

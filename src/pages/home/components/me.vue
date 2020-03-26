@@ -6,7 +6,7 @@
 			<!-- <h2>一个前端小白</h2>
 			<h3>巨蟹座</h3>
 			<h4>初学HTML、CSS、JS，有了解Vue</h4> -->
-			<a href="http://127.0.0.1:8848/%E7%AE%80%E5%8E%86/index.html" target="_blank"><img src="../../../assets/images/me.jpg" alt="博客头像"></a>
+			<a href="../../../../jianli/index.html" target="_blank"><img src="../../../assets/images/me.jpg" alt="博客头像"></a>
 			<h1>孜然粉</h1>
 		</div>
 		<div class="contact fadeInRight">

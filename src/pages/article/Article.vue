@@ -77,7 +77,7 @@ export default{
 		init() {
 			let that = this
 			window.console.log(this.type)
-			axios.get('http://121.40.244.57:3000/article/getArticle').then(function(res) {
+			axios.get("http://" + window.location.hostname + ":3000/article/getArticle").then(function(res) {
 				that.articleList = []
 				for(let i in res.data.data) {
 					if(that.type == res.data.data[i].type) {

@@ -12,7 +12,7 @@ export default {
 
 <style scoped="scoped">
 	.tip{
-		flex: 1;
+		width: 100%;
 		margin-top: 60px;
 	}
 	h3{

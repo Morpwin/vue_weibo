@@ -70,8 +70,7 @@ export default{
 	},
 	created() {
 		let that = this
-		// "http://" + window.location.host + "/article/getArticle"
-		axios.get('http://121.40.244.57:3000/article/getArticle').then(function(res) {
+		axios.get("http://" + window.location.hostname + ":3000/article/getArticle").then(function(res) {
 			for(let i in res.data.data) {
 				that.articleList.push(res.data.data[i])
 			}

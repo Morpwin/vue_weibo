@@ -27,9 +27,8 @@ export default{
 <style>
 	.main {
 		margin-top: 30px;
-		width: 70%;
+		width: 100%;
 		padding-left: 20px;
-		flex: 1;
 	}
 	/* table 样式 */
 	.main table {

@@ -32,7 +32,7 @@ export default{
 	},
 	mounted() {
 		let that = this
-		axios.get("http://121.40.244.57:3000/article/getArticle",{params: {articleId: that.articleId}}).then(function (res) {
+		axios.get("http://" + window.location.hostname + ":3000/article/getArticle",{params: {articleId: that.articleId}}).then(function (res) {
 			that.article = res.data.article
 		})
 	},

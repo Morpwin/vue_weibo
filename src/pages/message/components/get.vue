@@ -57,7 +57,7 @@ export default {
 	
 	},
 	mounted() {
-		axios.get("http://121.40.244.57:3000/article/getPost").then((res) => {
+		axios.get("http://" + window.location.hostname + ":3000/article/getPost").then((res) => {
 			window.console.log(res.data.data)
 			if(res.data.code == 1) {
 				this.data = res.data.data
@@ -134,7 +134,10 @@ export default {
 				}
 			}
 		}
-	}
+	},
+	beforeDestroy() {
+		window.onresize = null
+	},
 }
 </script>
 
