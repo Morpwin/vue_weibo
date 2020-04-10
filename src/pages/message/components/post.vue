@@ -28,8 +28,9 @@ export default {
 			let content = document.querySelector(".text").value
 			let time = timeTool()
 			if(name != "" && content != "") {
-				axios.post("http://121.40.244.57:3000/article/setPost", {name: name, content: content, time: time}).then((res) => {
-					if(res.data.code == 1) {
+				axios.post("http://" + window.location.hostname + ":3001/message/setMessage", {name, content, time})
+				.then((res) => {
+					if(res.data.err == 0) {
 						alert("提交成功")
 						name = ""
 						content = ""

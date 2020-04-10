@@ -31,9 +31,14 @@ export default{
 		}
 	},
 	mounted() {
-		let that = this
-		axios.get("http://" + window.location.hostname + ":3000/article/getArticle",{params: {articleId: that.articleId}}).then(function (res) {
-			that.article = res.data.article
+		axios.post("http://" + window.location.hostname + ":3001/article/getOnlyArticle",{_id: this.articleId})
+		.then((res) => {
+			if(res.data.err == 0) {
+				this.article = res.data.msg[0]
+			}
+			else {
+				window.console.log(res.data.msg)
+			}
 		})
 	},
 	methods: {
@@ -56,5 +61,6 @@ export default{
 	.box{
 		margin-top: 60px;
 		display: flex;
+		width: 100%;
 	}
 </style>

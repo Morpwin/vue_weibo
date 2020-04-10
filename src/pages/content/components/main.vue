@@ -27,8 +27,9 @@ export default{
 <style>
 	.main {
 		margin-top: 30px;
-		width: 100%;
+		flex: 1;
 		padding-left: 20px;
+		width: 0;
 	}
 	/* table 样式 */
 	.main table {
@@ -113,10 +114,13 @@ export default{
 		line-height: 60px;
 		color: #10D07A;
 	}
-	.main p{
+	.main p , .main li{
 		font-size: 14px;
 		line-height: 30px;
-		text-indent: 20px;
+		text-indent: 2em
+	}
+	.main li {
+		list-style: disc outside none;
 	}
 	.main span{
 		font-size: 14px;

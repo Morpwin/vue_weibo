@@ -117,6 +117,9 @@ export default {
 }
 </script>
 <style>
+	#app .me {
+		width: 340px;
+	}
 	.head-enter, .head-leave-to {
 		transform: translateY(-60px);
 	}

@@ -57,18 +57,20 @@ export default {
 	
 	},
 	mounted() {
-		axios.get("http://" + window.location.hostname + ":3000/article/getPost").then((res) => {
-			window.console.log(res.data.data)
-			if(res.data.code == 1) {
-				this.data = res.data.data
+		axios.get("http://" + window.location.hostname + ":3001/message/getAllMessage")
+		.then((res) => {
+			window.console.log(res.data.msg)
+			if(res.data.err == 0) {
+				this.data = res.data.msg
 				this.$nextTick(() => {
 					let box = document.getElementsByClassName("get_message")
 					let itemWidth = 240
 					let gap = 30
 					this.pageWidth = document.querySelector(".get_box").offsetWidth
-					this.col = Math.floor(this.pageWidth / 240)
+					this.col = Math.floor(this.pageWidth / itemWidth)
 					let arrHeight = []
 					for(let i = 0; i < box.length; i++) {
+						box[i].style.width = 240
 						if(i < this.col) {
 							let left = i * (itemWidth + gap)
 							box[i].style.left = left + "px"
@@ -91,34 +93,43 @@ export default {
 		})
 		
 		window.onresize = () => {
-			let box = document.getElementsByClassName("get_message")
-			let itemWidth = 240
-			let gap = 30
-			this.pageWidth = document.querySelector(".get_box").offsetWidth
-			this.col = Math.floor(this.pageWidth / 240)
-			let arrHeight = []
-			for(let i = 0; i < box.length; i++) {
-				if(i < this.col) {
-					let left = i * (itemWidth + gap)
-					box[i].style.left = left + "px"
-					box[i].style.top = "0px"
-					arrHeight[i] = box[i].offsetHeight
-					this.getMaxHeight(arrHeight)
-					document.querySelector(".get_box").style.height = this.maxHeight + "px"
-				}
-				else {
-					let minHeight = Math.min.apply(null,arrHeight)
-					let minHeightIndex = this.getMinHeightIndex(arrHeight, minHeight)
-					box[i].style.top = minHeight + gap + "px"
-					box[i].style.left = box[minHeightIndex].style.left
-					arrHeight[minHeightIndex] = arrHeight[minHeightIndex] + box[i].offsetHeight + gap
-					this.getMaxHeight(arrHeight)
-					document.querySelector(".get_box").style.height = this.maxHeight + "px"
-				}
-			}
+// 			if(e.currentTarget.innerWidth > 880) {
+// 				this.getMessage(240, 30)
+// 			}
+// 			else {
+// 				this.getMessage(400, 0)
+// 			}
+			this.getMessage(240, 30)
 		}
 	},
 	methods: {
+		getMessage(width, margin) {	
+				let box = document.getElementsByClassName("get_message")
+				let itemWidth = width
+				let gap = margin
+				this.pageWidth = document.querySelector(".get_box").offsetWidth
+				this.col = Math.floor(this.pageWidth / itemWidth)
+				let arrHeight = []
+				for(let i = 0; i < box.length; i++) {
+					box[i].style.width = width
+					if(i < this.col) {
+						let left = i * (itemWidth + gap)
+						box[i].style.left = left + "px"
+						arrHeight[i] = box[i].offsetHeight
+						this.getMaxHeight(arrHeight)		
+						document.querySelector(".get_box").style.height = this.maxHeight + "px"
+					}
+					else {
+						let minHeight = Math.min.apply(null,arrHeight)
+						let minHeightIndex = this.getMinHeightIndex(arrHeight, minHeight)
+						box[i].style.top = minHeight + gap + "px"
+						box[i].style.left = box[minHeightIndex].style.left
+						arrHeight[minHeightIndex] = arrHeight[minHeightIndex] + box[i].offsetHeight + gap
+						this.getMaxHeight(arrHeight)
+						document.querySelector(".get_box").style.height = this.maxHeight + "px"
+					}
+				}
+		},
 		getMinHeightIndex(arr,height) {
 			for(let i = 0; i < arr.length; i++) {
 				if(arr[i] == height) {

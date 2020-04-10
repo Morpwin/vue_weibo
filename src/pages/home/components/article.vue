@@ -70,7 +70,7 @@ export default{
 		transition: all 0.8s linear;
 	}
 	.article{
-		width: 100%;
+		flex: 1;
 		min-width: 320px;
 		max-width: 1200px;
 	}

@@ -82,6 +82,7 @@ export default{
 	.me{
 		margin-left: 20px;
 		margin-right: 20px;
+		width: 340px;
 	}
 	.about_me,.type,.contact{
 		border: 1px solid #eaeaea;

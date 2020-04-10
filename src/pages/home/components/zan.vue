@@ -8,72 +8,78 @@
 </template>
 
 <script>
-import axios from 'axios'
-import * as sysTools from '@/assets/js/sysTools.js'
+
+// import axios from 'axios'
 export default {
 	name: "HomeZan",
 	props: {
+		supFlag: Boolean,
 		zan: Number
 	},
 	data() {
 		return {
+			zanflag: this.supFlag,
 			flag: false,
 			zanImg: require("../../../assets/images/zan.png"),
 			show: false,
 			add_num: false,
-			zanFlag: "",
-			ip: ""
 		}
 	},
 	watch: {
-		zanFlag() {
+		supFlag(newVal) {
+			this.zanflag = newVal
 			let num = this.$refs.num
-			if(this.zanFlag) {
-				num.style.backgroundColor = "#10D07A"
-				this.zanImg = require("../../../assets/images/zan2.png")
-			}
-			else {
-				this.zanImg = require("../../../assets/images/zan.png")
-				num.style.backgroundColor = "#EAEAEA"
-			}
+			num.style.backgroundColor = "#10D07A"
+			this.zanImg = require("../../../assets/images/zan2.png")
 		}
+// 		supFlag() {
+// 			let num = this.$refs.num
+// 			if(this.zanFlag) {
+// 				num.style.backgroundColor = "#10D07A"
+// 				this.zanImg = require("../../../assets/images/zan2.png")
+// 			}
+// 			else {
+// 				this.zanImg = require("../../../assets/images/zan.png")
+// 				num.style.backgroundColor = "#EAEAEA"
+// 			}
+// 		}
 	},
 	mounted() {
-		let num = this.$refs.num
-		let ip = sessionStorage.getItem('ip')
-		window.console.log(ip)
-		let brower = sysTools.GetCurrentBrowser()
-		let os = sysTools.GetOs()
-		axios.get("http://" + window.location.hostname + ":3000/people/getPeople",{params: {ip: ip, brower: brower, os: os}}).then((res) => {
-			if(res.data.code == 1) {
-				if(res.data.data) {
-					window.console.log(res.data.data)
-					this.zanFlag = res.data.data.zanFlag
-					this.$nextTick(() => {
-						if(this.zanFlag) {
-							num.style.backgroundColor = "#10D07A"
-							this.zanImg = require("../../../assets/images/zan2.png")
-						}
-						else {
-							this.zanImg = require("../../../assets/images/zan.png")
-							num.style.backgroundColor = "#EAEAEA"
-						}
-					})
-				}			
-			}
-		})
+// 		let num = this.$refs.num
+// 		let ip = sessionStorage.getItem('ip')
+// 		window.console.log(ip)
+// 		let brower = sysTools.GetCurrentBrowser()
+// 		let os = sysTools.GetOs()
+// 		axios.get("http://" + window.location.hostname + ":3000/people/getPeople",{params: {ip: ip, brower: brower, os: os}}).then((res) => {
+// 			if(res.data.code == 1) {
+// 				if(res.data.data) {
+// 					window.console.log(res.data.data)
+// 					this.zanFlag = res.data.data.zanFlag
+// 					this.$nextTick(() => {
+// 						if(this.zanFlag) {
+// 							num.style.backgroundColor = "#10D07A"
+// 							this.zanImg = require("../../../assets/images/zan2.png")
+// 						}
+// 						else {
+// 							this.zanImg = require("../../../assets/images/zan.png")
+// 							num.style.backgroundColor = "#EAEAEA"
+// 						}
+// 					})
+// 				}			
+// 			}
+// 		})
 	},
 	methods: {
 		clickZan() {
-			this.$emit("listenClickZan")
-			if(this.zanFlag && !this.show ) {
+			this.$emit("listenClickZan")		
+			if(this.supFlag && !this.show ) {
 				this.flag = true
 				this.show = true
 				setTimeout(() => {
 					this.flag = false
 				},3000)
 			}
-			if(!this.zanFlag) {
+			if(!this.supFlag) {
 				this.add_num = true
 				this.zanFlag = true
 				setTimeout(() => {
@@ -85,7 +91,7 @@ export default {
 		afterLeave() {
 			this.show = false
 		},
-		//+1回调函数
+		// +1回调函数
 	}
 }
 </script>

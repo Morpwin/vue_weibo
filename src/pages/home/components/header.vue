@@ -44,7 +44,6 @@ export default{
 	},
 	watch: {
 		keyword: function (val) {
-			window.console.log(this.articleList)
 			let list = []	
 			for(let i = 0; i < this.articleList.length; i++) {
 				if(this.articleList[i].title.indexOf(val) != -1) {
@@ -52,6 +51,7 @@ export default{
 				}
 			}
 			this.newlist = list
+			window.console.log(list)
 			if(val) {
 				this.showList = true
 			}
@@ -69,10 +69,12 @@ export default{
 		}
 	},
 	created() {
-		let that = this
-		axios.get("http://" + window.location.hostname + ":3000/article/getArticle").then(function(res) {
-			for(let i in res.data.data) {
-				that.articleList.push(res.data.data[i])
+		axios.post("http://" + "121.40.244.57" + ":3001/article/getArticle", {pageNum: 1, pageSize: 999}).then((res) => {
+			if(res.data.err == 0) {
+				let data = res.data.msg.data
+				for(let i = 0; i < data.length; i++) {
+					this.articleList.push(data[i])
+				}
 			}
 		})
 	},

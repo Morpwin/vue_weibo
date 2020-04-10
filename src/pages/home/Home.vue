@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<home-zan @listenClickZan="listenClickZan" :zan="zan" class="mobile"></home-zan>
+		<home-zan @listenClickZan="listenClickZan" :zan="zan" :supFlag="supFlag" class="mobile"></home-zan>
 		<transition name="head">
 			<home-header  v-show="this.$store.state.headerFlag"></home-header>
 		</transition>
@@ -9,7 +9,7 @@
 			<home-article :dataShow="dataShow"></home-article>
 			<home-me class="mobile"></home-me>
 		</div>
-		<home-pagination @listenPrev="listenPrev" @listenNext="listenNext" class="fadeInLeft"></home-pagination>
+		<home-pagination @listenPrev="listenPrev()" @listenNext="listenNext()" class="fadeInLeft"></home-pagination>
 		<home-footer class="mobile"></home-footer>
 	</div>
 </template>
@@ -42,19 +42,19 @@ export default{
 		return {
 			articleList: [],
       // 所有页面的数据
-      totalPage: [],
+      allPage: 0,
       // 每页显示数量
-      pageSize: 8,
+      pageSize: 5,
       // 共几页
       pageNum: 1,
       // 当前显示的数据
       dataShow: [],
-      // 默认当前显示第一页
-      currentPage: 0,
+      // 数据总数量
+      count: 0,
 			//存放标语的数据
 			sloganData: {},
 			//点赞的标志
-			zanFlag: "",
+			supFlag: false,
 			//点赞的数量
 			zan: 0,
 			//访问量
@@ -73,64 +73,13 @@ export default{
 		}
 	},
 	created() {
-		let that = this
 		//记录进来的人的身份
-		this.ip = sessionStorage.getItem('ip')
-		this.brower = sysTools.GetCurrentBrowser()
-		this.os = sysTools.GetOs()
-		let peopleData = {
-			ip: this.ip,
-			brower: this.brower,
-			os: this.os,
-			time: timeTool()
-		}
-		//设置访客信息，如果是新访客，flag = false，旧访客，flag = true
-		axios.post("http://" + window.location.hostname + ":3000/people/setPeople",peopleData).then(res => {   
-			if(res.data.code == 1) {
-				//保留访问flag
-				this.visitFlag = res.data.visitFlag  
-				//保留赞flag
-				this.zanFlag = res.data.zanFlag
-				//获取访问量
-				axios.get("http://" + window.location.hostname + ":3000/sign/getVisits").then(res => {  
-					if(res.data.code == 1) {
-						//若是新访客，则访问量+1，若不是，保持不变
-						if(!this.visitFlag) {
-							this.visits = res.data.visits + 1
-						}
-						else {
-							this.visits = res.data.visits
-						}
-						//设置访问量
-						axios.post("http://" + window.location.hostname + ":3000/sign/setVisits",{visits: this.visits}).then((res) => {
-							if(res.data.code == 1) {
-								//打印访问量
-								window.console.log("visits:" + this.visits)  
-							}
-						}).catch(err => {
-							window.console.log(err)
-						})
-					}
-				}).catch(err => {
-					window.console.log(err)
-				})
-			}
-		}).catch(err => {
-			window.console.log(err)
-		})
-		//初始化文章
-		window.console.log("http://" + window.location.hostname + ":3000/article/getArticle")
-		axios.get("http://" + window.location.hostname + ":3000/article/getArticle").then(function(res) {
-			for(let i in res.data.data) {
-				that.articleList.push(res.data.data[i])
-			}
-			that.pageNum = Math.ceil(that.articleList.length / that.pageSize) || 1;	
-			for (let i = 0; i < that.pageNum; i++) {
-				that.totalPage[i] = that.articleList.slice(that.pageSize * i, that.pageSize * (i + 1))
-			}
-			that.dataShow = that.totalPage[that.currentPage].reverse()
-		})
 
+		this.renderList()
+		this.renderSlogan()
+		this.renderPeople()
+		this.renderSupport()
+		this.renderSign()
 	},
 	mounted() {
 		//初始化scrollReveal
@@ -150,63 +99,125 @@ export default{
 			// 其他可用的动画效果
 			easing: 'linear',
 		})
-		let that = this	
-		//初始化标语
-		axios.get("http://" + window.location.hostname + ":3000/article/getSlogan").then(function(res) {
-			that.sloganData = res.data.data[0]
-		})
-		//初始化赞
-		axios.get("http://" + window.location.hostname + ":3000/sign/getZan").then(res => {
-			if(res.data.code == 1) {
-				this.zan = res.data.zan
-			}
-		})
+		
+		
 	},
 	methods: {
+		renderList() {
+			//初始化文章
+			axios.post("http://" + window.location.hostname + ":3001/article/getArticle", {pageNum: this.pageNum, pageSize: this.pageSize})
+			.then((res) =>{
+				if(res.data.err == 0) {
+					this.dataShow = res.data.msg.data
+					this.allPage = res.data.msg.allPage
+					this.count = res.data.msg.count
+				}
+				else {
+					window.console.log(res.data.msg)
+				}
+			})
+		},
+		renderSlogan() {
+			//初始化标语
+			axios.get("http://" + window.location.hostname + ":3001/slogan/getSlogan").then((res) => {
+				window.console.log(res.data.msg[0])
+				this.sloganData = res.data.msg[0]
+			})
+		},
+		renderPeople() {
+			this.ip = sessionStorage.getItem('ip')
+			this.brower = sysTools.GetCurrentBrowser()
+			this.os = sysTools.GetOs()
+			sessionStorage.setItem("brower", sysTools.GetCurrentBrowser())
+			sessionStorage.setItem("os", sysTools.GetOs())
+			let time = timeTool()
+			axios.post("http://" + window.location.hostname + ":3001/people/setPeople", 
+			{ip: this.ip, brower: this.brower, os: this.os, time: time, supFlag: false})
+			.then((res) => {
+				if(res.data.err == 0) {
+					window.console.log("添加游客成功")
+				}
+				if(res.data.err == -1) {
+					window.console.log("添加游客失败")
+				}
+				if(res.data.err == -2) {
+					window.console.log("获取ip失败")
+				}
+			})
+		},
+		renderSupport() {
+			//初始化赞
+			axios.get("http://" + window.location.hostname + ":3001/sign/getSupport").then(res => {
+				if(res.data.err == 0) {
+					this.zan = res.data.msg[0].sup
+				}
+			})
+		},
+		renderSign() {
+			//初始化标记
+			let ip = sessionStorage.getItem("ip")
+			let os = sessionStorage.getItem("os")
+			let brower = sessionStorage.getItem("brower")
+			axios.post("http://" + window.location.hostname + ":3001/people/getPeople", {ip, os, brower})
+			.then((res) => {
+				if(res.data.err == 0) {
+					window.console.log(res.data.msg[0])
+					this.supFlag = res.data.msg[0].supFlag
+				}
+				if(res.data.err == -1) {
+					window.console.log(res.data.msg)
+				}
+				if(res.data.err == -2) {
+					window.console.log(res.data.msg)
+				}
+			})
+		},
 		listenNext() {
-			if (this.currentPage == this.pageNum - 1) {
+			if (this.pageNum == this.allPage) {
 				alert("这已经是最后一页了")
 				return
 			}
-			this.dataShow = this.totalPage[++this.currentPage].reverse()
+			else {
+				this.pageNum ++
+				this.$nextTick(() => {
+					this.renderList()
+				})
+			}
 		},
 		// 上一页
 		listenPrev() {
-			if (this.currentPage == 0) {
+			if (this.pageNum == 1) {
 				alert("这已经是第一页了")
 				return
 			}
-			this.dataShow = this.totalPage[--this.currentPage].reverse()
+			else {
+				this.pageNum --
+				this.$nextTick(() => {
+					this.renderList()
+				})
+			}
 		},
-		//监听点赞
 		listenClickZan() {
-			let that = this
-			//获取当前的点赞量
-			axios.get("http://" + window.location.hostname + ":3000/sign/getZan").then(function (res) {
-				if(res.data.code == 1) {
-					window.console.log("res.data.zan:" + res.data.zan)
-					if(!that.zanFlag) {
-						that.zan = res.data.zan + 1
-						window.console.log("that.zan:" + that.zan)
-						axios.post("http://" + window.location.hostname + ":3000/sign/setZan", {zan: that.zan}).then(function (res) {
-							if(res.data.code == 1) {
-								that.zanFlag = true
-								let peopleData = {
-									ip: that.ip,
-									brower: that.brower,
-									os: that.os,
-									time: timeTool(),
-									zanFlag: that.zanFlag
-								}
-								axios.post("http://" + window.location.hostname + ":3000/people/setPeople", peopleData).then(res => {
-									window.console.log(res)
-								})
-							}
-						})
-					}
+			let ip = sessionStorage.getItem("ip")
+			let os = sessionStorage.getItem("os")
+			let brower = sessionStorage.getItem("brower")
+			axios.post("http://" + window.location.hostname + ":3001/sign/setSupport", {ip, os, brower})
+			.then((res) => {
+				if(res.data.err == 0) {
+					this.supFlag = true
+					this.renderSupport()
+					window.console.log(res.data.msg)
 				}
-			})			
-		},
+				if(res.data.err == -1) {
+					this.supFlag = false
+					window.console.log(res.data.msg)
+				}
+				if(res.data.err == -2) {
+					this.supFlag = true
+					window.console.log(res.data.msg)
+				}
+			})
+		}
 	}
 }
 </script>
@@ -221,5 +232,6 @@ export default{
 	.content{
 		margin-top: 10px;
 		display: flex;
+		width: 100%;
 	}
 </style>
