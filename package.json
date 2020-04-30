@@ -10,7 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "core-js": "^3.3.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lib-flexible": "^0.3.2",
     "popper.js": "^1.16.1",
     "px2rem-loader": "^0.1.9",
